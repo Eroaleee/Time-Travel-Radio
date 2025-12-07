@@ -52,18 +52,33 @@ A nostalgic web application that lets you experience radio broadcasting from dif
    Create a `music` folder in the root directory with subfolders for each station:
    ```
    music/
-   ├── 70s-1/    # Disco Fever station
-   ├── 70s-2/    # Classic Rock station
-   ├── 70s-3/    # Soul Train station
-   ├── 70s-4/    # Punk Pioneers station
-   ├── 80s-1/    # Synthwave Central station
-   ├── 80s-2/    # Pop Explosion station
-   ├── 80s-3/    # Rock Arena station
-   ├── 80s-4/    # New Wave Paradise station
-   ├── 90s-1/    # Grunge Station
-   ├── 90s-2/    # Hip Hop Headquarters station
-   ├── 90s-3/    # Boy Band Boulevard station
-   └── 90s-4/    # Britpop Beats station
+    music/70s/
+    music/70s/disco-fever/
+    music/70s/disco-fever/Song Name - Artist Name.mp3
+    music/70s/classic-rock/
+    music/70s/classic-rock/Song Name - Artist Name.mp3
+    music/70s/soul-train/
+    music/70s/soul-train/Song Name - Artist Name.mp3
+    music/70s/punk-pioneers/
+    music/70s/punk-pioneers/Song Name - Artist Name.mp3
+    music/80s/
+    music/80s/synthwave-central/
+    music/80s/synthwave-central/Song Name - Artist Name.mp3
+    music/80s/pop-explosion/
+    music/80s/pop-explosion/Song Name - Artist Name.mp3
+    music/80s/rock-arena/
+    music/80s/rock-arena/Song Name - Artist Name.mp3
+    music/80s/new-wave-paradise/
+    music/80s/new-wave-paradise/Song Name - Artist Name.mp3
+    music/90s/
+    music/90s/grunge-station/
+    music/90s/grunge-station/Song Name - Artist Name.mp3
+    music/90s/hip-hop-headquarters/
+    music/90s/hip-hop-headquarters/Song Name - Artist Name.mp3
+    music/90s/boy-band-boulevard/
+    msusic/90s/boy-band-boulevard/Song Name - Artist Name.mp3
+    music/90s/britpop-beats/
+    music/90s/britpop-beats/Song Name - Artist Name.mp3
    ```
    
    Add `.mp3` files to each station folder. The filename format should be: `Artist - Song Title.mp3`
