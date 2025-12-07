@@ -320,7 +320,7 @@
 .vu-meters-70s {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
     margin-bottom: 15px;
 }
 
@@ -331,19 +331,19 @@
 }
 
 .vu-meter-70s .meter-face {
-    width: 160px;
-    height: 85px;
+    width: 220px;
+    height: 115px;
     background: 
         radial-gradient(ellipse 80% 50% at 50% 90%, rgba(255,200,100,0.3) 0%, transparent 50%),
         linear-gradient(180deg, #fffef5 0%, #f5f0dc 30%, #ebe5c8 100%);
-    border-radius: 4px 4px 2px 2px;
+    border-radius: 5px 5px 3px 3px;
     position: relative;
     overflow: hidden;
     border: 2px solid #1a1510;
     box-shadow: 
-        inset 0 0 15px rgba(0,0,0,0.1),
-        inset 0 -2px 5px rgba(0,0,0,0.05),
-        0 2px 4px rgba(0,0,0,0.4);
+        inset 0 0 20px rgba(0,0,0,0.1),
+        inset 0 -3px 8px rgba(0,0,0,0.05),
+        0 3px 6px rgba(0,0,0,0.4);
 }
 
 /* Warm backlight glow when ON */
@@ -366,17 +366,17 @@
 /* Individual scale numbers positioned along arc */
 .vu-meter-70s .meter-scale span {
     position: absolute;
-    font-size: 8px;
+    font-size: 10px;
     color: #222;
     font-weight: 600;
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
-.vu-meter-70s .meter-scale span:nth-child(1) { left: 12px; bottom: 36px; transform: rotate(-35deg); }
-.vu-meter-70s .meter-scale span:nth-child(2) { left: 30px; bottom: 52px; transform: rotate(-20deg); }
-.vu-meter-70s .meter-scale span:nth-child(3) { left: 52px; bottom: 62px; transform: rotate(-8deg); }
-.vu-meter-70s .meter-scale span:nth-child(4) { left: 50%; bottom: 66px; transform: translateX(-50%); }
-.vu-meter-70s .meter-scale span:nth-child(5) { right: 10px; bottom: 52px; transform: rotate(20deg); }
+.vu-meter-70s .meter-scale span:nth-child(1) { left: 18px; bottom: 48px; transform: rotate(-35deg); }
+.vu-meter-70s .meter-scale span:nth-child(2) { left: 42px; bottom: 70px; transform: rotate(-20deg); }
+.vu-meter-70s .meter-scale span:nth-child(3) { left: 72px; bottom: 84px; transform: rotate(-8deg); }
+.vu-meter-70s .meter-scale span:nth-child(4) { left: 50%; bottom: 90px; transform: translateX(-50%); }
+.vu-meter-70s .meter-scale span:nth-child(5) { right: 14px; bottom: 70px; transform: rotate(20deg); }
 
 .vu-meter-70s .meter-scale span.danger {
     color: #cc0000;
@@ -387,14 +387,14 @@
 .vu-meter-70s .meter-face::before {
     content: '';
     position: absolute;
-    bottom: 10px;
+    bottom: 12px;
     left: 50%;
-    width: 120px;
-    height: 60px;
-    margin-left: -60px;
-    border: 1px solid #333;
+    width: 170px;
+    height: 85px;
+    margin-left: -85px;
+    border: 1.5px solid #333;
     border-bottom: none;
-    border-radius: 60px 60px 0 0;
+    border-radius: 85px 85px 0 0;
     background: transparent;
 }
 
@@ -402,16 +402,16 @@
 .vu-meter-70s .meter-scale::before {
     content: '';
     position: absolute;
-    bottom: 10px;
+    bottom: 12px;
     left: 50%;
-    width: 120px;
-    height: 60px;
-    margin-left: -60px;
-    border: 2px solid transparent;
-    border-top: 2px solid #cc0000;
-    border-right: 2px solid #cc0000;
+    width: 170px;
+    height: 85px;
+    margin-left: -85px;
+    border: 2.5px solid transparent;
+    border-top: 2.5px solid #cc0000;
+    border-right: 2.5px solid #cc0000;
     border-bottom: none;
-    border-radius: 60px 60px 0 0;
+    border-radius: 85px 85px 0 0;
     clip-path: polygon(75% 0, 100% 0, 100% 100%, 60% 100%);
 }
 
@@ -419,24 +419,24 @@
 .vu-meter-70s .meter-face::after {
     content: '';
     position: absolute;
-    bottom: 6px;
+    bottom: 8px;
     left: 50%;
-    width: 8px;
-    height: 8px;
-    margin-left: -4px;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
     background: radial-gradient(circle, #666 0%, #222 100%);
     border-radius: 50%;
     z-index: 10;
-    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
 
 /* The needle */
 .vu-meter-70s .meter-needle {
     position: absolute;
-    bottom: 10px;
+    bottom: 13px;
     left: 50%;
-    width: 1.5px;
-    height: 55px;
+    width: 2px;
+    height: 78px;
     background: linear-gradient(180deg, 
         #111 0%, 
         #222 60%, 
@@ -446,28 +446,28 @@
     transform: rotate(-45deg);
     transition: transform 0.12s ease-out;
     z-index: 5;
-    margin-left: -0.75px;
+    margin-left: -1px;
 }
 
 /* VU text label */
 .vu-meter-70s .meter-face .vu-text {
     position: absolute;
-    bottom: 14px;
+    bottom: 18px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 7px;
+    font-size: 9px;
     color: #555;
     font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 /* Channel label below meter */
 .vu-meter-70s .meter-label {
-    margin-top: 5px;
-    font-size: 0.75rem;
+    margin-top: 6px;
+    font-size: 0.85rem;
     color: #2a1f14;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 }
 
 /* ========== POWER OFF STATE - ONLY METER FACE DIMS ========== */
