@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Travel Radio</title>
+    <link rel="icon" type="image/x-icon" href="assets/retro_radio.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=VT323&family=Share+Tech+Mono&family=Righteous&family=Bungee&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/delorean.css">
+    <link rel="stylesheet" href="css/retro-radios.css">
+</head>
+<body data-theme="time-machine">
+    <!-- Electrical Sparks Canvas -->
+    <canvas id="sparks-canvas"></canvas>
+
+    <!-- ==================== TIME MACHINE LANDING PAGE ==================== -->
+    <section id="landing-page" class="page active">
+        <!-- Industrial Metal Background with real textures -->
+        <div class="delorean-console">
+            <!-- Top Panel - Brushed Aluminum with Rivets -->
+            <div class="console-top-panel">
+                <div class="rivet top-left"></div>
+                <div class="rivet top-right"></div>
+                <div class="panel-label-plate">
+                    <div class="label-screws">
+                        <span class="phillips-screw"></span>
+                        <span class="phillips-screw"></span>
+                    </div>
+                    <div class="label-text">
+                        <span class="label-main">TEMPORAL DISPLACEMENT SYSTEM</span>
+                        <span class="label-sub">DMC-12 SERIES // FLUX CAPACITOR EQUIPPED</span>
+                    </div>
+                    <div class="label-screws">
+                        <span class="phillips-screw"></span>
+                        <span class="phillips-screw"></span>
+                    </div>
+                </div>
+                <div class="rivet bottom-left"></div>
+                <div class="rivet bottom-right"></div>
+            </div>
+
+            <!-- Main Console Body -->
+            <div class="console-main">
+                <!-- Left Section - Gauges -->
+                <div class="console-section gauges-section">
+                    <div class="metal-panel gauge-panel">
+                        <!-- Speedometer -->
+                        <div class="analog-gauge speedometer">
+                            <div class="gauge-bezel">
+                                <div class="gauge-glass">
+                                    <div class="gauge-face">
+                                        <svg viewBox="0 0 200 200" class="gauge-svg">
+                                            <!-- Gauge markings -->
+                                            <defs>
+                                                <filter id="gauge-glow">
+                                                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                                    <feMerge>
+                                                        <feMergeNode in="coloredBlur"/>
+                                                        <feMergeNode in="SourceGraphic"/>
+                                                    </feMerge>
+                                                </filter>
+                                            </defs>
+                                            <!-- Speed marks -->
+                                            <g class="speed-marks">
+                                                <text x="100" y="45" class="speed-number">120</text>
+                                                <text x="155" y="70" class="speed-number">100</text>
+                                                <text x="170" y="115" class="speed-number">88</text>
+                                                <text x="155" y="160" class="speed-number">60</text>
+                                                <text x="100" y="180" class="speed-number">40</text>
+                                                <text x="45" y="160" class="speed-number">20</text>
+                                                <text x="30" y="115" class="speed-number">0</text>
+                                            </g>
+                                            <!-- Needle -->
+                                            <line x1="100" y1="100" x2="100" y2="35" class="gauge-needle" id="speed-needle" transform="rotate(-120, 100, 100)"/>
+                                            <circle cx="100" cy="100" r="12" class="needle-cap"/>
+                                        </svg>
+                                        <div class="gauge-label">MPH</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gauge-screws">
+                                <span class="hex-screw"></span>
+                                <span class="hex-screw"></span>
+                            </div>
+                        </div>
+
+                        <!-- Indicator Lights Panel -->
+                        <div class="indicator-panel">
+                            <div class="indicator-row">
+                                <div class="indicator-light" id="ready-light">
+                                    <div class="light-housing">
+                                        <div class="light-lens green"></div>
+                                    </div>
+                                    <span class="light-label">READY</span>
+                                </div>
+                                <div class="indicator-light" id="armed-light">
+                                    <div class="light-housing">
+                                        <div class="light-lens amber"></div>
+                                    </div>
+                                    <span class="light-label">ARMED</span>
+                                </div>
+                                <div class="indicator-light" id="danger-light">
+                                    <div class="light-housing">
+                                        <div class="light-lens red"></div>
+                                    </div>
+                                    <span class="light-label">DANGER</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Section - Time Circuits & Switches -->
+                <div class="console-section center-section">
+                    <!-- Time Circuits Display -->
+                    <div class="time-circuits-housing">
+                        <div class="circuits-frame">
+                            <div class="hazard-stripe top"></div>
+                            
+                            <!-- Destination Time Row -->
+                            <div class="time-row destination-row">
+                                <div class="row-label-plate">
+                                    <span>DESTINATION TIME</span>
+                                </div>
+                                <div class="led-display-unit red">
+                                    <div class="led-segment month">
+                                        <span class="segment-char" id="dest-m1">-</span>
+                                        <span class="segment-char" id="dest-m2">-</span>
+                                        <span class="segment-char" id="dest-m3">-</span>
+                                    </div>
+                                    <div class="led-segment day">
+                                        <span class="segment-char" id="dest-d1">-</span>
+                                        <span class="segment-char" id="dest-d2">-</span>
+                                    </div>
+                                    <div class="led-segment year">
+                                        <span class="segment-char" id="dest-y1">-</span>
+                                        <span class="segment-char" id="dest-y2">-</span>
+                                        <span class="segment-char" id="dest-y3">-</span>
+                                        <span class="segment-char" id="dest-y4">-</span>
+                                    </div>
+                                    <div class="led-segment time">
+                                        <span class="segment-char" id="dest-h1">-</span>
+                                        <span class="segment-char" id="dest-h2">-</span>
+                                        <span class="segment-colon">:</span>
+                                        <span class="segment-char" id="dest-min1">-</span>
+                                        <span class="segment-char" id="dest-min2">-</span>
+                                    </div>
+                                    <div class="led-ampm">
+                                        <span id="dest-ampm">--</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Present Time Row -->
+                            <div class="time-row present-row">
+                                <div class="row-label-plate">
+                                    <span>PRESENT TIME</span>
+                                </div>
+                                <div class="led-display-unit green">
+                                    <div class="led-segment month">
+                                        <span class="segment-char">D</span>
+                                        <span class="segment-char">E</span>
+                                        <span class="segment-char">C</span>
+                                    </div>
+                                    <div class="led-segment day">
+                                        <span class="segment-char">0</span>
+                                        <span class="segment-char">6</span>
+                                    </div>
+                                    <div class="led-segment year">
+                                        <span class="segment-char">2</span>
+                                        <span class="segment-char">0</span>
+                                        <span class="segment-char">2</span>
+                                        <span class="segment-char">5</span>
+                                    </div>
+                                    <div class="led-segment time">
+                                        <span class="segment-char" id="pres-h1">-</span>
+                                        <span class="segment-char" id="pres-h2">-</span>
+                                        <span class="segment-colon blink">:</span>
+                                        <span class="segment-char" id="pres-min1">-</span>
+                                        <span class="segment-char" id="pres-min2">-</span>
+                                    </div>
+                                    <div class="led-ampm">
+                                        <span id="pres-ampm">--</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Last Departed Row -->
+                            <div class="time-row departed-row">
+                                <div class="row-label-plate">
+                                    <span>LAST TIME DEPARTED</span>
+                                </div>
+                                <div class="led-display-unit amber">
+                                    <div class="led-segment month">
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                    </div>
+                                    <div class="led-segment day">
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                    </div>
+                                    <div class="led-segment year">
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                    </div>
+                                    <div class="led-segment time">
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-colon">:</span>
+                                        <span class="segment-char">-</span>
+                                        <span class="segment-char">-</span>
+                                    </div>
+                                    <div class="led-ampm">
+                                        <span>--</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hazard-stripe bottom"></div>
+                        </div>
+                    </div>
+
+                    <!-- Era Selection Toggle Switches -->
+                    <div class="era-switches-panel">
+                        <div class="panel-header">
+                            <div class="warning-label">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="#FFB000" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                                </svg>
+                                <span>SELECT DESTINATION ERA</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="#FFB000" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="toggle-switches">
+                            <!-- 1970s Toggle -->
+                            <div class="era-toggle" data-decade="70s">
+                                <div class="toggle-assembly">
+                                    <div class="toggle-plate">
+                                        <div class="toggle-slot"></div>
+                                        <div class="toggle-lever" id="toggle-70s">
+                                            <div class="lever-grip"></div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle-indicator">
+                                        <div class="led-pip" id="led-70s"></div>
+                                    </div>
+                                </div>
+                                <div class="toggle-label-area">
+                                    <span class="era-year">T-50</span>
+                                    <span class="era-name">DISCO ERA</span>
+                                </div>
+                            </div>
+
+                            <!-- 1980s Toggle -->
+                            <div class="era-toggle" data-decade="80s">
+                                <div class="toggle-assembly">
+                                    <div class="toggle-plate">
+                                        <div class="toggle-slot"></div>
+                                        <div class="toggle-lever" id="toggle-80s">
+                                            <div class="lever-grip"></div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle-indicator">
+                                        <div class="led-pip" id="led-80s"></div>
+                                    </div>
+                                </div>
+                                <div class="toggle-label-area">
+                                    <span class="era-year">T-40</span>
+                                    <span class="era-name">NEON DREAMS</span>
+                                </div>
+                            </div>
+
+                            <!-- 1990s Toggle -->
+                            <div class="era-toggle" data-decade="90s">
+                                <div class="toggle-assembly">
+                                    <div class="toggle-plate">
+                                        <div class="toggle-slot"></div>
+                                        <div class="toggle-lever" id="toggle-90s">
+                                            <div class="lever-grip"></div>
+                                        </div>
+                                    </div>
+                                    <div class="toggle-indicator">
+                                        <div class="led-pip" id="led-90s"></div>
+                                    </div>
+                                </div>
+                                <div class="toggle-label-area">
+                                    <span class="era-year">T-30</span>
+                                    <span class="era-name">RADICAL VIBES</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Section - Flux Capacitor & Power -->
+                <div class="console-section flux-section">
+                    <div class="metal-panel flux-panel">
+                        <!-- Flux Capacitor Housing -->
+                        <div class="flux-capacitor-unit">
+                            <div class="flux-outer-frame">
+                                <div class="flux-inner-housing">
+                                    <div class="flux-glass-cover">
+                                        <!-- The actual flux capacitor Y-shape -->
+                                        <div class="flux-core">
+                                            <div class="flux-arm arm-top">
+                                                <div class="flux-tube">
+                                                    <div class="flux-energy" id="flux-top"></div>
+                                                </div>
+                                            </div>
+                                            <div class="flux-arm arm-left">
+                                                <div class="flux-tube">
+                                                    <div class="flux-energy" id="flux-left"></div>
+                                                </div>
+                                            </div>
+                                            <div class="flux-arm arm-right">
+                                                <div class="flux-tube">
+                                                    <div class="flux-energy" id="flux-right"></div>
+                                                </div>
+                                            </div>
+                                            <div class="flux-center-point"></div>
+                                        </div>
+                                        <!-- Electrical arcs - Upside down Y shape -->
+                                        <svg class="flux-arcs" viewBox="0 0 200 200">
+                                            <path class="arc arc-1" d="M100,100 Q80,150 100,180"/>
+                                            <path class="arc arc-2" d="M100,100 Q50,70 30,40"/>
+                                            <path class="arc arc-3" d="M100,100 Q150,70 170,40"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flux-label-plate">
+                                    <span>FLUX CAPACITOR</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Power Meter -->
+                        <div class="power-meter-unit">
+                            <div class="meter-housing">
+                                <div class="meter-label">POWER OUTPUT</div>
+                                <div class="meter-bar-container">
+                                    <div class="meter-scale">
+                                        <span>0</span>
+                                        <span>0.5</span>
+                                        <span>1.0</span>
+                                        <span class="target">1.21</span>
+                                        <span>1.5</span>
+                                    </div>
+                                    <div class="meter-bar">
+                                        <div class="meter-fill" id="power-fill"></div>
+                                        <div class="meter-target-line" id="power-target-line"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-readout">
+                                    <span class="readout-value" id="power-readout">0.00</span>
+                                    <span class="readout-unit">GIGAWATTS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Plutonium Chamber -->
+                        <div class="plutonium-indicator">
+                            <div class="chamber-housing">
+                                <div class="radiation-symbol">
+                                    <svg viewBox="0 0 60 60">
+                                        <circle cx="30" cy="30" r="28" fill="none" stroke="#FFB000" stroke-width="2"/>
+                                        <circle cx="30" cy="30" r="6" fill="#FFB000"/>
+                                        <path d="M30 8 A22 22 0 0 1 49 41 L30 30 Z" fill="#FFB000"/>
+                                        <path d="M30 8 A22 22 0 0 0 11 41 L30 30 Z" fill="#FFB000"/>
+                                        <path d="M11 41 A22 22 0 0 0 49 41 L30 30 Z" fill="#FFB000"/>
+                                    </svg>
+                                </div>
+                                <span class="chamber-label">PLUTONIUM</span>
+                                <span class="chamber-status" id="plutonium-status">CHAMBER FULL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section - Engage Button -->
+            <div class="console-bottom">
+                <!-- Safety Cover - LEFT SIDE -->
+                <div class="safety-section">
+                    <div class="safety-cover-assembly" id="safety-cover">
+                        <div class="safety-switch-housing">
+                            <div class="safety-cover-flap">
+                                <div class="cover-stripes"></div>
+                            </div>
+                            <div class="safety-switch-base">
+                                <div class="switch-slot"></div>
+                            </div>
+                        </div>
+                        <div class="safety-label-plate">
+                            <span class="engraved-text">LIFT TO ARM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CENTER - The Big Red Engage Button -->
+                <div class="engage-section">
+                    <div class="engage-button-housing">
+                        <div class="button-outer-ring"></div>
+                        <button class="engage-button" id="engage-btn" disabled>
+                            <div class="button-chrome-ring"></div>
+                            <div class="button-red-dome">
+                                <div class="button-highlight"></div>
+                                <span class="button-text">ENGAGE</span>
+                            </div>
+                        </button>
+                        <div class="button-base-plate">
+                            <span class="base-label">TIME CIRCUITS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Display - RIGHT SIDE -->
+                <div class="status-section">
+                    <div class="status-readout">
+                        <div class="readout-housing">
+                            <div class="readout-screen">
+                                <span class="status-text" id="system-status">SELECT DESTINATION</span>
+                            </div>
+                        </div>
+                        <div class="status-label-plate">
+                            <span class="engraved-text">SYSTEM STATUS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Time Flash Overlay for Lightning Effect -->
+    <div class="time-flash" id="time-flash"></div>
+
+    <!-- ==================== TIME TRAVEL TRANSITION ==================== -->
+    <section id="time-travel-transition" class="page transition-page">
+        <canvas id="time-tunnel-canvas"></canvas>
+        <div class="travel-hud">
+            <div class="hud-speedometer">
+                <div class="hud-speed-value" id="travel-speed">0</div>
+                <div class="hud-speed-unit">MPH</div>
+                <div class="hud-speed-bar">
+                    <div class="speed-fill" id="speed-bar-fill"></div>
+                    <div class="speed-marker-88"></div>
+                </div>
+            </div>
+            <div class="hud-year">
+                <span class="year-label">TEMPORAL COORDINATE</span>
+                <span class="year-display" id="travel-year">2025</span>
+            </div>
+            <div class="hud-status" id="travel-status">INITIATING TEMPORAL DISPLACEMENT</div>
+        </div>
+        <div class="lightning-overlay">
+            <div class="bolt bolt-1"></div>
+            <div class="bolt bolt-2"></div>
+            <div class="bolt bolt-3"></div>
+        </div>
+        <div class="fire-trails">
+            <div class="trail trail-left"></div>
+            <div class="trail trail-right"></div>
+        </div>
+    </section>
+
+    <!-- ==================== RETRO RADIO PAGE (Unified Radio Interface) ==================== -->
+    <section id="retro-radio-page" class="page retro-radio-page">
+        <!-- Era-specific background -->
+        <div class="era-background" id="radio-era-background">
+            <canvas id="radio-canvas"></canvas>
+        </div>
+
+        <!-- Era Header (dynamically styled) -->
+        <header class="era-header" id="era-header">
+            <button class="return-btn" id="return-to-present">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                <span>RETURN TO PRESENT</span>
+            </button>
+            <div class="era-title" id="era-title-display">1980s</div>
+        </header>
+
+        <!-- Radio Container (changes based on decade) -->
+        <div class="radio-container" id="radio-container">
+            <!-- Radio HTML dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- ==================== DECADE HUB (Legacy - hidden) ==================== -->
+    <section id="decade-hub" class="page" style="display:none !important;">
+        <div class="era-background" id="era-background">
+            <canvas id="era-canvas"></canvas>
+        </div>
+
+        <header class="hub-header">
+            <button class="back-btn" id="back-to-time-machine">
+                <svg class="back-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                <span>RETURN TO TIME MACHINE</span>
+            </button>
+            <div class="decade-indicator">
+                <span class="decade-badge" id="current-decade-badge">1980s</span>
+                <span class="decade-tagline" id="current-decade-tagline">NEON DREAMS</span>
+            </div>
+            <div class="era-clock">
+                <svg class="clock-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path stroke="currentColor" stroke-width="2" d="M12 6v6l4 2"/>
+                </svg>
+                <span class="clock-time" id="era-time">--:--</span>
+            </div>
+        </header>
+
+        <main class="hub-content">
+            <h2 class="hub-title">CHOOSE YOUR STATION</h2>
+            <p class="hub-subtitle">Tune into the hottest radio stations of the era</p>
+            
+            <div class="stations-grid" id="stations-grid">
+                <!-- Stations populated dynamically -->
+            </div>
+        </main>
+    </section>
+
+    <!-- ==================== RADIO PLAYER PAGE (Legacy - hidden) ==================== -->
+    <section id="radio-player" class="page" style="display:none !important;">
+        <div class="player-background" id="player-background">
+            <canvas id="player-canvas"></canvas>
+        </div>
+
+        <header class="player-header">
+            <button class="back-btn" id="back-to-stations">
+                <svg class="back-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+                <span>STATIONS</span>
+            </button>
+            <div class="station-name-header">
+                <div class="station-frequency">
+                    <span class="freq-number" id="station-freq">107.7</span>
+                    <span class="freq-label">FM</span>
+                </div>
+                <span class="station-name" id="player-station-name">Station Name</span>
+            </div>
+            <div class="broadcast-indicator">
+                <span class="broadcast-dot"></span>
+                <span class="broadcast-label">LIVE</span>
+            </div>
+        </header>
+
+        <main class="player-content">
+            <div class="player-main">
+                <div class="media-section">
+                    <div class="media-display" id="media-display">
+                        <div class="turntable-container">
+                            <div class="turntable-base">
+                                <div class="turntable-platter">
+                                    <div class="vinyl-record" id="vinyl-record">
+                                        <div class="vinyl-label">
+                                            <img id="album-art" src="" alt="Album">
+                                        </div>
+                                        <div class="vinyl-grooves"></div>
+                                    </div>
+                                </div>
+                                <div class="tonearm">
+                                    <div class="tonearm-base"></div>
+                                    <div class="tonearm-arm"></div>
+                                    <div class="tonearm-head"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vu-meters">
+                        <div class="vu-meter">
+                            <div class="vu-housing">
+                                <div class="vu-face">
+                                    <div class="vu-scale"></div>
+                                    <div class="vu-needle" id="vu-left"></div>
+                                </div>
+                            </div>
+                            <span class="vu-label">L</span>
+                        </div>
+                        <div class="vu-meter">
+                            <div class="vu-housing">
+                                <div class="vu-face">
+                                    <div class="vu-scale"></div>
+                                    <div class="vu-needle" id="vu-right"></div>
+                                </div>
+                            </div>
+                            <span class="vu-label">R</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="now-playing-section">
+                    <div class="led-now-playing">
+                        <div class="led-screen">
+                            <span class="led-label">NOW PLAYING</span>
+                            <div class="led-track-info">
+                                <span class="led-title" id="track-title">Waiting for broadcast...</span>
+                                <span class="led-artist" id="track-artist">---</span>
+                            </div>
+                            <div class="led-album" id="track-album">Album info loading...</div>
+                        </div>
+                    </div>
+
+                    <div class="volume-section">
+                        <span class="volume-label">VOLUME</span>
+                        <div class="volume-knob-container">
+                            <div class="volume-knob" id="volume-knob">
+                                <div class="knob-indicator"></div>
+                            </div>
+                        </div>
+                        <input type="range" id="volume-slider" class="volume-slider-hidden" min="0" max="100" value="75">
+                        <button class="mute-btn" id="mute-btn" title="Mute">
+                            <svg class="volume-icon" id="volume-icon" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="live-notice">
+                        <div class="notice-dot"></div>
+                        <span>LIVE RADIO - NO PLAYBACK CONTROLS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dj-section">
+                <div class="dj-booth">
+                    <div class="dj-header">
+                        <svg class="mic-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/>
+                        </svg>
+                        <div class="dj-info">
+                            <span class="dj-name" id="dj-name">DJ NAME</span>
+                            <span class="dj-status">YOUR HOST</span>
+                        </div>
+                        <div class="on-air-light" id="on-air-light">
+                            <span>ON AIR</span>
+                        </div>
+                    </div>
+                    <div class="dj-speech">
+                        <p class="speech-text" id="speech-text">Welcome to the station!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-panel">
+                    <div class="chart-header">
+                        <svg class="chart-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        <span class="chart-title">HOT 20 THIS WEEK</span>
+                    </div>
+                    <div class="chart-list" id="chart-list"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="station-switcher">
+            <span class="switcher-label">OTHER STATIONS:</span>
+            <div class="other-stations" id="other-stations"></div>
+        </footer>
+    </section>
+
+    <!-- ==================== AUDIO ELEMENTS ==================== -->
+    <audio id="main-audio" crossorigin="anonymous"></audio>
+    <audio id="dj-audio" crossorigin="anonymous"></audio>
+    <audio id="sfx-audio"></audio>
+
+    <!-- ==================== LOADING OVERLAY ==================== -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <svg viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="80 30"/>
+                </svg>
+            </div>
+            <div class="loading-text">TUNING IN...</div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATIONS ==================== -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

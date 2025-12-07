@@ -1,0 +1,660 @@
+/* ============================================
+   RETRO RADIO - COMPONENT STYLES
+   ============================================ */
+
+/* ==================== DECADE HUB ==================== */
+#decade-hub {
+    background: var(--bg-dark);
+}
+
+.hub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-xl);
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.decade-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.decade-badge {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.decade-tagline {
+    font-family: var(--font-retro);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.live-clock {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.hub-content {
+    flex: 1;
+    padding: var(--space-2xl);
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hub-title {
+    font-family: var(--font-title);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    text-align: center;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.hub-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+}
+
+/* ==================== STATIONS GRID ==================== */
+.stations-grid {
+    display: block;
+    width: 100%;
+}
+
+/* Inner grid for fallback mode */
+.stations-grid-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-xl);
+}
+
+.station-card {
+    position: relative;
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.station-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--neon-cyan);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 255, 255, 0.2);
+}
+
+.station-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+    display: block;
+}
+
+.station-name {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.station-genre {
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
+    margin-bottom: var(--space-md);
+}
+
+.station-host {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.host-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #333, #222);
+    border-radius: var(--radius-round);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.host-name {
+    font-family: var(--font-retro);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.station-now-playing {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.station-now-playing span {
+    display: inline-block;
+    animation: scrollText 10s linear infinite;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.station-live-badge {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff0000;
+    border-radius: var(--radius-xl);
+    font-size: 0.7rem;
+    color: #ff0000;
+}
+
+.station-live-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: #ff0000;
+    border-radius: var(--radius-round);
+    animation: liveDotBlink 1s ease-in-out infinite;
+}
+
+/* ==================== RADIO PLAYER ==================== */
+#radio-player {
+    /* display handled by .page.active in main.css */
+    grid-template-rows: auto 1fr auto auto;
+    min-height: 100vh;
+    background: var(--bg-dark);
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-xl);
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.station-name-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* ==================== PLAYER CONTENT ==================== */
+.player-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    padding: var(--space-2xl);
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .player-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Player Left - Visualizer & Now Playing */
+.player-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.visualizer-container {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 400px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #1a1a2e, #0a0a1a);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.album-art-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.album-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.audio-visualizer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.vinyl-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    display: none;
+}
+
+[data-theme="70s"] .vinyl-overlay {
+    display: block;
+}
+
+.media-display {
+    display: none;
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Now Playing Info */
+.now-playing {
+    text-align: center;
+    padding: var(--space-lg);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-lg);
+}
+
+.playing-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+    letter-spacing: 0.2em;
+}
+
+.track-title {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.track-artist {
+    font-size: 1.1rem;
+    color: var(--neon-cyan);
+    margin-bottom: var(--space-sm);
+}
+
+.track-album {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Live Radio Message */
+.live-radio-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: #ff6666;
+    text-align: center;
+}
+
+/* ==================== PLAYER RIGHT - DJ & INFO ==================== */
+.player-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* DJ Booth */
+.dj-booth {
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+}
+
+.dj-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mic-icon {
+    font-size: 1.5rem;
+}
+
+.dj-name {
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    color: var(--neon-pink);
+    flex: 1;
+}
+
+.dj-status {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.dj-content {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+}
+
+/* ==================== INFO PANELS ==================== */
+.info-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .info-panels {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel {
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-icon {
+    font-size: 1.1rem;
+}
+
+.panel-title {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.news-year {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--neon-cyan);
+}
+
+/* Chart List */
+.chart-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: var(--space-sm);
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-cyan) transparent;
+}
+
+.chart-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chart-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+}
+
+.chart-list::-webkit-scrollbar-thumb {
+    background: var(--neon-cyan);
+    border-radius: 3px;
+}
+
+.chart-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    transition: background 0.2s ease;
+}
+
+.chart-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.chart-item.current {
+    background: rgba(0, 255, 255, 0.1);
+    border-left: 3px solid var(--neon-cyan);
+}
+
+.chart-position {
+    font-family: var(--font-display);
+    font-weight: 700;
+    min-width: 25px;
+    color: var(--text-secondary);
+}
+
+.chart-item.current .chart-position {
+    color: var(--neon-cyan);
+}
+
+.chart-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chart-song {
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chart-artist {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.chart-indicator {
+    font-size: 0.75rem;
+}
+
+.chart-indicator.up { color: #00ff00; }
+.chart-indicator.down { color: #ff0000; }
+.chart-indicator.same { color: #888; }
+.chart-indicator.new { color: #ff6600; }
+
+/* News List */
+.news-list {
+    padding: var(--space-md);
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.news-item {
+    display: flex;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-bullet {
+    color: var(--neon-cyan);
+}
+
+/* ==================== OTHER STATIONS BAR ==================== */
+.other-stations-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-md) var(--space-xl);
+    background: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+}
+
+.bar-label {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.other-stations {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.other-station-btn {
+    padding: var(--space-sm) var(--space-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.other-station-btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.other-station-btn.active {
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
+}
+
+/* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+@media (max-width: 768px) {
+    .hub-header {
+        flex-direction: column;
+        gap: var(--space-md);
+        padding: var(--space-md);
+    }
+    
+    .player-header {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .player-content {
+        padding: var(--space-lg);
+    }
+    
+    .dj-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .dj-speech-bubble {
+        margin-left: 0;
+        margin-top: var(--space-md);
+    }
+    
+    .dj-speech-bubble::before {
+        display: none;
+    }
+    
+    .other-stations-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .hub-content {
+        padding: var(--space-md);
+    }
+    
+    .stations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .visualizer-container {
+        max-width: 280px;
+    }
+    
+    .info-panels {
+        display: none;
+    }
+}

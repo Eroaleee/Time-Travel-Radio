@@ -1,0 +1,568 @@
+/* ============================================
+   RETRO RADIO - DECADE THEMES
+   ============================================ */
+
+/* ==================== 70s THEME - DISCO FEVER ==================== */
+[data-theme="70s"] {
+    --theme-primary: #FF6B35;
+    --theme-secondary: #F7931E;
+    --theme-accent: #FDC830;
+    --theme-bg: #2d1810;
+    --theme-bg-gradient: linear-gradient(180deg, #3d2820 0%, #1a0d08 100%);
+    --theme-text: #FFF8E7;
+    --theme-glow: rgba(253, 200, 48, 0.5);
+    --theme-pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FDC830' fill-opacity='0.08'%3E%3Cpath d='M30 30c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10-10-4.477-10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    --border-radius: 20px;
+}
+
+[data-theme="70s"] body {
+    background: var(--theme-bg-gradient);
+    font-family: 'Righteous', cursive;
+}
+
+[data-theme="70s"] .page {
+    background: var(--theme-bg-gradient);
+    background-image: var(--theme-pattern);
+}
+
+/* 70s Disco Ball Effect */
+[data-theme="70s"]::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 3%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 2%),
+        radial-gradient(circle at 50% 70%, rgba(255,255,255,0.1) 0%, transparent 4%),
+        radial-gradient(circle at 30% 80%, rgba(255,255,255,0.06) 0%, transparent 2%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.08) 0%, transparent 3%);
+    animation: discoBall 3s ease-in-out infinite;
+}
+
+@keyframes discoBall {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* 70s Typography */
+[data-theme="70s"] .hub-title,
+[data-theme="70s"] .panel-title {
+    font-family: 'Bungee', cursive;
+    color: var(--theme-accent);
+    text-shadow: 
+        3px 3px 0 var(--theme-primary),
+        -1px -1px 0 var(--theme-secondary);
+}
+
+/* 70s Station Cards */
+[data-theme="70s"] .station-card {
+    background: linear-gradient(145deg, #4a2a1a, #2d1810);
+    border: 3px solid var(--theme-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: 
+        0 5px 20px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+[data-theme="70s"] .station-card:hover {
+    border-color: var(--theme-accent);
+    box-shadow: 
+        0 10px 40px rgba(253, 200, 48, 0.3),
+        0 0 30px rgba(253, 200, 48, 0.2);
+    transform: translateY(-8px) rotateX(5deg);
+}
+
+/* 70s Vinyl Record Effect */
+[data-theme="70s"] .media-display {
+    display: block !important;
+}
+
+[data-theme="70s"] .vinyl-record {
+    width: 200px;
+    height: 200px;
+    background: 
+        radial-gradient(circle at 50% 50%, 
+            #111 0%, #111 15%,
+            #222 15%, #222 16%,
+            #111 16%, #111 30%,
+            #1a1a1a 30%, #1a1a1a 31%,
+            #111 31%, #111 45%,
+            #222 45%, #222 46%,
+            #111 46%, #111 60%,
+            #1a1a1a 60%, #1a1a1a 61%,
+            #111 61%, #111 75%,
+            #222 75%, #222 76%,
+            #111 76%, #111 100%);
+    border-radius: 50%;
+    position: relative;
+    animation: vinylSpin 2s linear infinite;
+    box-shadow: 
+        0 0 30px rgba(0,0,0,0.8),
+        inset 0 0 60px rgba(0,0,0,0.5);
+}
+
+[data-theme="70s"] .vinyl-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, var(--theme-primary), var(--theme-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+[data-theme="70s"] .vinyl-label::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #111;
+    border-radius: 50%;
+}
+
+@keyframes vinylSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 70s Buttons */
+[data-theme="70s"] .back-btn,
+[data-theme="70s"] button {
+    border-radius: 25px;
+    background: linear-gradient(180deg, var(--theme-secondary), var(--theme-primary));
+    border: 2px solid var(--theme-accent);
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* 70s Volume Slider */
+[data-theme="70s"] .volume-slider {
+    background: linear-gradient(90deg, var(--theme-primary), var(--theme-accent));
+    border-radius: 10px;
+}
+
+/* 70s Sunburst Background */
+[data-theme="70s"] .player-content {
+    background: 
+        radial-gradient(ellipse at center, 
+            rgba(253, 200, 48, 0.1) 0%, 
+            transparent 50%),
+        var(--theme-bg-gradient);
+}
+
+/* ==================== 80s THEME - NEON DREAMS ==================== */
+[data-theme="80s"] {
+    --theme-primary: #FF00FF;
+    --theme-secondary: #00FFFF;
+    --theme-accent: #FF1493;
+    --theme-bg: #0a0a0a;
+    --theme-bg-gradient: linear-gradient(180deg, #1a0a2e 0%, #000000 50%, #0a0a1a 100%);
+    --theme-text: #ffffff;
+    --theme-glow: rgba(255, 0, 255, 0.5);
+    --border-radius: 4px;
+}
+
+[data-theme="80s"] body {
+    background: var(--theme-bg-gradient);
+    font-family: 'Orbitron', sans-serif;
+}
+
+[data-theme="80s"] .page {
+    background: var(--theme-bg-gradient);
+}
+
+/* 80s Grid Background */
+[data-theme="80s"]::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    pointer-events: none;
+    z-index: 1;
+    background: 
+        linear-gradient(transparent 0%, rgba(255,0,255,0.05) 100%),
+        linear-gradient(90deg, rgba(255,0,255,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255,0,255,0.1) 1px, transparent 1px);
+    background-size: 100% 100%, 50px 50px, 50px 50px;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: bottom;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 50px, 0 50px; }
+}
+
+/* 80s Sunset Gradient */
+[data-theme="80s"] .hub-header {
+    background: linear-gradient(180deg, 
+        #ff6b9d 0%, 
+        #ff8e6b 20%, 
+        #ffc86b 40%, 
+        #6b8eff 60%, 
+        #6b6bff 80%, 
+        transparent 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* 80s Typography */
+[data-theme="80s"] .hub-title,
+[data-theme="80s"] .panel-title,
+[data-theme="80s"] .station-name {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(180deg, var(--theme-secondary), var(--theme-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 10px var(--theme-primary));
+}
+
+/* 80s Chrome Text Effect */
+[data-theme="80s"] .dj-name {
+    background: linear-gradient(180deg, 
+        #ffffff 0%, 
+        #c0c0c0 20%, 
+        #ffffff 40%, 
+        #c0c0c0 60%, 
+        #ffffff 80%, 
+        #c0c0c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+/* 80s Station Cards */
+[data-theme="80s"] .station-card {
+    background: linear-gradient(145deg, #1a1a2e, #0a0a1a);
+    border: 2px solid var(--theme-primary);
+    border-radius: var(--border-radius);
+    box-shadow: 
+        0 0 20px rgba(255, 0, 255, 0.3),
+        0 0 40px rgba(255, 0, 255, 0.1),
+        inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+[data-theme="80s"] .station-card:hover {
+    border-color: var(--theme-secondary);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.5),
+        0 0 60px rgba(0, 255, 255, 0.3),
+        0 0 90px rgba(255, 0, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+/* 80s Cassette Tape Effect */
+[data-theme="80s"] .media-display {
+    display: block !important;
+}
+
+[data-theme="80s"] .vinyl-record {
+    display: none;
+}
+
+[data-theme="80s"] .media-display::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 130px;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 
+        inset 0 0 20px rgba(0,0,0,0.5),
+        0 5px 20px rgba(0,0,0,0.5);
+}
+
+[data-theme="80s"] .media-display::after {
+    content: 'SIDE A';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    color: var(--theme-secondary);
+    text-shadow: 0 0 5px var(--theme-secondary);
+}
+
+/* 80s Neon Buttons */
+[data-theme="80s"] .back-btn,
+[data-theme="80s"] button {
+    background: transparent;
+    border: 2px solid var(--theme-secondary);
+    color: var(--theme-secondary);
+    text-shadow: 0 0 5px var(--theme-secondary);
+    box-shadow: 
+        0 0 10px rgba(0, 255, 255, 0.3),
+        inset 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+[data-theme="80s"] .back-btn:hover,
+[data-theme="80s"] button:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.5),
+        0 0 40px rgba(0, 255, 255, 0.3),
+        inset 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+/* 80s VHS Glitch Effect */
+[data-theme="80s"] .album-art {
+    animation: vhsGlitch 5s ease-in-out infinite;
+}
+
+@keyframes vhsGlitch {
+    0%, 97%, 100% { 
+        transform: translate(0);
+        filter: none;
+    }
+    97.5% { 
+        transform: translate(-2px, 1px);
+        filter: hue-rotate(90deg);
+    }
+    98% { 
+        transform: translate(2px, -1px);
+        filter: hue-rotate(-90deg);
+    }
+    98.5% { 
+        transform: translate(-1px, 2px);
+        filter: saturate(2);
+    }
+}
+
+/* 80s Neon Glow Volume */
+[data-theme="80s"] .volume-slider {
+    background: #1a1a1a;
+    border: 1px solid var(--theme-primary);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+[data-theme="80s"] .volume-slider::-webkit-slider-thumb {
+    background: var(--theme-secondary);
+    box-shadow: 0 0 15px var(--theme-secondary);
+}
+
+/* ==================== 90s THEME - RADICAL VIBES ==================== */
+[data-theme="90s"] {
+    --theme-primary: #FFD700;
+    --theme-secondary: #00CED1;
+    --theme-accent: #FF69B4;
+    --theme-bg: #1a1a2e;
+    --theme-bg-gradient: linear-gradient(180deg, #2d2d5a 0%, #1a1a2e 50%, #0f0f1f 100%);
+    --theme-text: #ffffff;
+    --theme-glow: rgba(255, 215, 0, 0.5);
+    --border-radius: 8px;
+}
+
+[data-theme="90s"] body {
+    background: var(--theme-bg-gradient);
+    font-family: 'Bangers', cursive;
+}
+
+[data-theme="90s"] .page {
+    background: var(--theme-bg-gradient);
+}
+
+/* 90s Abstract Pattern Background */
+[data-theme="90s"]::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20 Q 40 10 60 30 T 80 60' stroke='%2300CED1' stroke-width='2' fill='none' opacity='0.1'/%3E%3Ccircle cx='80' cy='20' r='10' fill='%23FF69B4' opacity='0.1'/%3E%3Crect x='10' y='70' width='20' height='20' fill='%23FFD700' opacity='0.1' transform='rotate(15 20 80)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    animation: abstract90s 30s linear infinite;
+}
+
+@keyframes abstract90s {
+    from { background-position: 0 0; }
+    to { background-position: 200px 200px; }
+}
+
+/* 90s Typography - Bold & In Your Face */
+[data-theme="90s"] .hub-title {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    color: var(--theme-primary);
+    text-shadow: 
+        4px 4px 0 var(--theme-secondary),
+        -2px -2px 0 var(--theme-accent);
+    letter-spacing: 0.1em;
+    transform: skewX(-5deg);
+}
+
+[data-theme="90s"] .panel-title {
+    font-family: 'Bangers', cursive;
+    color: var(--theme-accent);
+    text-shadow: 2px 2px 0 #000;
+}
+
+/* 90s Windows 95 Style Cards */
+[data-theme="90s"] .station-card {
+    background: linear-gradient(180deg, #c0c0c0, #808080);
+    border: 3px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    border-radius: 0;
+    box-shadow: 
+        inset 1px 1px 0 #ffffff,
+        inset -1px -1px 0 #404040;
+    color: #000;
+}
+
+[data-theme="90s"] .station-card:hover {
+    border-color: var(--theme-secondary);
+    box-shadow: 
+        0 0 20px rgba(0, 206, 209, 0.5),
+        inset 1px 1px 0 #ffffff;
+}
+
+[data-theme="90s"] .station-card .station-name {
+    color: #000080;
+    font-family: 'Bangers', cursive;
+}
+
+/* 90s CD Spinning Effect */
+[data-theme="90s"] .media-display {
+    display: block !important;
+}
+
+[data-theme="90s"] .vinyl-record {
+    width: 180px;
+    height: 180px;
+    background: 
+        radial-gradient(circle at 50% 50%,
+            transparent 0%, transparent 15%,
+            #c0c0c0 15%, #e0e0e0 20%,
+            linear-gradient(45deg, 
+                #ff0000, #ff7f00, #ffff00, 
+                #00ff00, #0000ff, #4b0082, #9400d3
+            ) 20%,
+            #c0c0c0 95%, #808080 100%);
+    border-radius: 50%;
+    position: relative;
+    animation: cdSpin 3s linear infinite, cdRainbow 2s linear infinite;
+    box-shadow: 
+        0 0 30px rgba(255,255,255,0.3),
+        inset 0 0 30px rgba(255,255,255,0.2);
+}
+
+[data-theme="90s"] .vinyl-record::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #f0f0f0, #c0c0c0);
+    border-radius: 50%;
+}
+
+[data-theme="90s"] .vinyl-record::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background: #404040;
+    border-radius: 50%;
+}
+
+@keyframes cdSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes cdRainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* 90s Boxy 3D Buttons */
+[data-theme="90s"] .back-btn,
+[data-theme="90s"] button {
+    background: linear-gradient(180deg, #e0e0e0, #c0c0c0);
+    border: 3px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    border-radius: 0;
+    color: #000;
+    font-family: 'Bangers', cursive;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+[data-theme="90s"] .back-btn:hover,
+[data-theme="90s"] button:hover {
+    background: linear-gradient(180deg, #f0f0f0, #d0d0d0);
+}
+
+[data-theme="90s"] .back-btn:active,
+[data-theme="90s"] button:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* 90s Pixelated/Static Effect */
+[data-theme="90s"] .visualizer-container {
+    background: #000;
+    border: 3px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* 90s MTV Style */
+[data-theme="90s"] .dj-booth {
+    background: linear-gradient(135deg, 
+        var(--theme-primary) 0%, 
+        var(--theme-accent) 50%, 
+        var(--theme-secondary) 100%);
+    animation: mtvColors 5s ease-in-out infinite;
+}
+
+@keyframes mtvColors {
+    0%, 100% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(30deg); }
+}
+
+/* 90s Volume - Windows Style */
+[data-theme="90s"] .volume-slider {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+[data-theme="90s"] .volume-slider::-webkit-slider-thumb {
+    background: linear-gradient(180deg, #e0e0e0, #a0a0a0);
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    border-radius: 0;
+}
+
+/* ==================== THEME TRANSITIONS ==================== */
+[data-theme] .page,
+[data-theme] .station-card,
+[data-theme] button {
+    transition: 
+        background 0.5s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}

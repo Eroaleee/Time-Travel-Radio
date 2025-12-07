@@ -1,0 +1,787 @@
+/* ============================================
+   RETRO RADIO TIME MACHINE - Main Stylesheet
+   ============================================ */
+
+/* ==================== CSS VARIABLES ==================== */
+:root {
+    /* Base Colors */
+    --bg-dark: #0a0a0a;
+    --bg-darker: #050505;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent-glow: #00ffff;
+    
+    /* Time Machine Theme */
+    --time-primary: #ff3300;
+    --time-secondary: #ff6600;
+    --time-glow: rgba(255, 51, 0, 0.5);
+    --circuit-red: #ff0000;
+    --circuit-green: #00ff00;
+    --circuit-amber: #ffaa00;
+    
+    /* Neon Colors */
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-purple: #8a2be2;
+    --neon-blue: #0066ff;
+    --neon-green: #00ff66;
+    
+    /* Typography */
+    --font-display: 'Orbitron', 'Press Start 2P', monospace;
+    --font-title: 'Audiowide', 'Bungee', sans-serif;
+    --font-retro: 'Righteous', 'Bangers', cursive;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-round: 50%;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow: 500ms ease;
+    
+    /* Z-Index Layers */
+    --z-base: 1;
+    --z-overlay: 100;
+    --z-modal: 200;
+    --z-effects: 300;
+    --z-toast: 400;
+}
+
+/* ==================== RESET & BASE ==================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+/* Selection styling */
+::selection {
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
+}
+
+/* Scrollbar styling - grey metallic for landing page */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #505050;
+    border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #606060;
+}
+
+/* ==================== CRT & OVERLAY EFFECTS ==================== */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: var(--z-effects);
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 4px; }
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: calc(var(--z-effects) - 1);
+    background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 60%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: calc(var(--z-base) - 1);
+}
+
+/* ==================== PAGE STRUCTURE ==================== */
+.page {
+    display: none !important;
+    min-height: 100vh;
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.page.active {
+    display: flex !important;
+    flex-direction: column;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Override specific page display types when active */
+#radio-player.active {
+    display: grid !important;
+    grid-template-rows: auto 1fr auto auto;
+}
+
+#decade-hub.active {
+    display: flex !important;
+}
+
+/* Star Field Background */
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 40% 70%, white, transparent),
+        radial-gradient(1px 1px at 60% 20%, white, transparent),
+        radial-gradient(2px 2px at 80% 60%, white, transparent),
+        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1.5px 1.5px at 90% 40%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1.5px 1.5px at 30% 90%, white, transparent);
+    background-size: 250px 250px;
+    background-color: var(--bg-darker);
+    animation: twinkle 5s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ==================== LANDING PAGE - DELOREAN CONSOLE ==================== */
+#landing-page {
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-lg);
+    background: 
+        radial-gradient(ellipse at top, rgba(30,30,40,0.8) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(20,15,10,0.6) 0%, transparent 50%),
+        linear-gradient(180deg, #0a0a0f 0%, #050508 50%, #0a0508 100%);
+    overflow-y: auto;
+}
+
+#sparks-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* ==================== FLUX CAPACITOR ==================== */
+.flux-capacitor {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: var(--space-lg) 0;
+}
+
+.flux-ring {
+    position: absolute;
+    border-radius: var(--radius-round);
+    border: 3px solid transparent;
+}
+
+.flux-ring-outer {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-color: var(--circuit-amber);
+    animation: fluxSpin 4s linear infinite;
+    box-shadow: 
+        0 0 20px var(--circuit-amber),
+        inset 0 0 20px var(--circuit-amber);
+}
+
+.flux-ring-middle {
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    border-color: var(--neon-cyan);
+    animation: fluxSpin 3s linear infinite reverse;
+    box-shadow: 
+        0 0 15px var(--neon-cyan),
+        inset 0 0 15px var(--neon-cyan);
+}
+
+.flux-ring-inner {
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    border-color: var(--neon-pink);
+    animation: fluxSpin 2s linear infinite;
+    box-shadow: 
+        0 0 10px var(--neon-pink),
+        inset 0 0 10px var(--neon-pink);
+}
+
+@keyframes fluxSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.flux-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+}
+
+.flux-bolt {
+    position: absolute;
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(to bottom, var(--neon-cyan), transparent);
+    left: 50%;
+    transform-origin: bottom center;
+    animation: boltPulse 0.5s ease-in-out infinite;
+}
+
+.flux-bolt-1 { transform: translateX(-50%) rotate(0deg); }
+.flux-bolt-2 { transform: translateX(-50%) rotate(120deg); }
+.flux-bolt-3 { transform: translateX(-50%) rotate(240deg); }
+
+@keyframes boltPulse {
+    0%, 100% { 
+        opacity: 1; 
+        box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+    }
+    50% { 
+        opacity: 0.5; 
+        box-shadow: 0 0 5px var(--neon-cyan);
+    }
+}
+
+.flux-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    background: var(--neon-cyan);
+    border-radius: var(--radius-round);
+    box-shadow: 
+        0 0 20px var(--neon-cyan),
+        0 0 40px var(--neon-cyan),
+        0 0 60px var(--neon-cyan);
+    animation: coreGlow 1s ease-in-out infinite;
+}
+
+@keyframes coreGlow {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+/* ==================== TIME CIRCUITS ==================== */
+.time-circuits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 500px;
+}
+
+.circuit-display {
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    border: 2px solid #333;
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.circuit-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--circuit-amber), transparent);
+}
+
+.circuit-label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+    letter-spacing: 0.2em;
+}
+
+.circuit-value {
+    display: flex;
+    gap: var(--space-md);
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.circuit-display.destination .circuit-value {
+    color: var(--circuit-red);
+    text-shadow: 0 0 10px var(--circuit-red);
+}
+
+.circuit-display.present .circuit-value {
+    color: var(--circuit-green);
+    text-shadow: 0 0 10px var(--circuit-green);
+}
+
+/* ==================== DECADE SELECTOR ==================== */
+.decade-selector {
+    width: 100%;
+    text-align: center;
+}
+
+.selector-title {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--circuit-amber);
+    margin-bottom: var(--space-lg);
+    letter-spacing: 0.15em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.decade-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+}
+
+.decade-btn {
+    position: relative;
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border: 2px solid #333;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.decade-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.decade-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.decade-btn:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-cyan);
+    box-shadow: 
+        0 10px 40px rgba(0, 255, 255, 0.2),
+        0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.decade-btn.selected {
+    border-color: var(--neon-pink);
+    box-shadow: 
+        0 0 30px rgba(255, 0, 255, 0.3),
+        inset 0 0 30px rgba(255, 0, 255, 0.1);
+}
+
+.decade-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
+}
+
+.decade-year {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.decade-name {
+    display: block;
+    font-family: var(--font-retro);
+    font-size: 1rem;
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-sm);
+}
+
+.decade-preview {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.lightning-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle at center, rgba(0, 255, 255, 0.5), transparent 70%);
+    transition: opacity var(--transition-fast);
+}
+
+.decade-btn:hover .lightning-effect {
+    opacity: 1;
+    animation: lightningFlash 0.2s ease-out;
+}
+
+@keyframes lightningFlash {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* ==================== ENGAGE BUTTON ==================== */
+/* MOVED TO delorean.css - These styles are overridden there */
+
+/* ==================== SPEEDOMETER ==================== */
+.speedometer {
+    position: absolute;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.speed-dial {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    background: linear-gradient(180deg, #1a1a1a, #0a0a0a);
+    border: 2px solid #333;
+    border-radius: 60px 60px 0 0;
+    overflow: hidden;
+}
+
+.speed-needle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    height: 50px;
+    background: linear-gradient(to top, var(--time-primary), var(--circuit-amber));
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(-90deg);
+    transition: transform 1s ease-out;
+    box-shadow: 0 0 10px var(--time-primary);
+}
+
+.speed-label {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.speed-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--time-primary);
+    text-shadow: 0 0 10px var(--time-glow);
+}
+
+/* ==================== BUTTONS & CONTROLS ==================== */
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.back-icon {
+    font-size: 1rem;
+}
+
+/* ==================== LOADING OVERLAY ==================== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-modal);
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--neon-cyan);
+    border-radius: var(--radius-round);
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--space-md);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--neon-cyan);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-static {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAIRJREFUaIHt0DEBACAMBLCLf/MBNmQFPDaCSZt7Z+bvegb8zRAEhiAwBIEhCAxBYAgCQxAYgsAQBIYgMASBIQgMQWAIAkMQGILAEASGIDAEgSEIDEFgCAJDEBiCwBAEhiAwBIEhCAxBYAgCQxAYgsAQBIYgMASBIQgMQWAIAkMQGILgAHoUA/8Y3qOPAAAAAElFTkSuQmCC');
+    opacity: 0.02;
+    animation: staticNoise 0.1s steps(5) infinite;
+    pointer-events: none;
+}
+
+@keyframes staticNoise {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-5%, 5%); }
+    50% { transform: translate(5%, -5%); }
+    75% { transform: translate(-5%, -5%); }
+    100% { transform: translate(5%, 5%); }
+}
+
+/* ==================== TOAST NOTIFICATIONS ==================== */
+.toast-container {
+    position: fixed;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.toast {
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border: 1px solid var(--neon-cyan);
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+    animation: toastSlideIn 0.3s ease-out;
+}
+
+.toast.error {
+    border-color: var(--time-primary);
+    box-shadow: 0 5px 20px rgba(255, 51, 0, 0.3);
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    :root {
+        --space-lg: 16px;
+        --space-xl: 24px;
+        --space-2xl: 32px;
+    }
+    
+    .neon-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+    
+    .subtitle {
+        font-size: clamp(0.8rem, 3vw, 1rem);
+        letter-spacing: 0.15em;
+    }
+    
+    .flux-capacitor {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .circuit-value {
+        font-size: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .decade-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .speedometer {
+        position: static;
+        margin-top: var(--space-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .time-circuits {
+        display: none;
+    }
+    
+    .decade-btn {
+        padding: var(--space-md);
+    }
+    
+    .decade-icon {
+        font-size: 2rem;
+    }
+    
+    .decade-year {
+        font-size: 1.4rem;
+    }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .crt-overlay,
+    .loading-static {
+        display: none;
+    }
+}
+
+/* Focus indicators */
+:focus-visible {
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --text-secondary: #ffffff;
+        --bg-dark: #000000;
+    }
+    
+    .decade-btn {
+        border-width: 3px;
+    }
+}
